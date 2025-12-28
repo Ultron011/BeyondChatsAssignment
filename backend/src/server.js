@@ -30,14 +30,24 @@ app.get('/health', (req, res) => {
 // GET all articles
 app.get('/articles', (req, res) => {
   const articles = db.prepare('SELECT * FROM articles').all();
-  res.json(articles.map(a => ({ ...a, tags: JSON.parse(a.tags) })));
+  res.json(articles.map(a => ({ 
+    ...a, 
+    tags: JSON.parse(a.tags),
+    referenceSources: a.referenceSources ? JSON.parse(a.referenceSources) : null,
+    isEnhanced: Boolean(a.isEnhanced)
+  })));
 });
 
 // GET single article by ID
 app.get('/articles/:id', (req, res) => {
   const article = db.prepare('SELECT * FROM articles WHERE id = ?').get(req.params.id);
   if (!article) return res.status(404).json({ error: 'Article not found' });
-  res.json({ ...article, tags: JSON.parse(article.tags) });
+  res.json({ 
+    ...article, 
+    tags: JSON.parse(article.tags),
+    referenceSources: article.referenceSources ? JSON.parse(article.referenceSources) : null,
+    isEnhanced: Boolean(article.isEnhanced)
+  });
 });
 
 // POST create new article

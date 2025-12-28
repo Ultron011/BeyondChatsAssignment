@@ -9,8 +9,8 @@ const articlesPath = path.join(__dirname, '..', '..', 'data', 'scraped_articles.
 const articles = JSON.parse(fs.readFileSync(articlesPath, 'utf-8'));
 
 const insertStmt = db.prepare(`
-  INSERT OR REPLACE INTO articles (url, title, excerpt, author, publishDate, tags, content)
-  VALUES (?, ?, ?, ?, ?, ?, ?)
+  INSERT OR REPLACE INTO articles (url, title, excerpt, author, publishDate, tags, originalContent, content)
+  VALUES (?, ?, ?, ?, ?, ?, ?, ?)
 `);
 
 for (const article of articles) {
@@ -21,6 +21,7 @@ for (const article of articles) {
     article.author,
     article.publishDate,
     JSON.stringify(article.tags),
+    article.content,
     article.content
   );
 }

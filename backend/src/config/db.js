@@ -16,7 +16,11 @@ db.exec(`
     author TEXT,
     publishDate TEXT,
     tags TEXT,
+    originalContent TEXT,
     content TEXT,
+    isEnhanced INTEGER DEFAULT 0,
+    referenceSources TEXT,
+    enhancedAt DATETIME,
     createdAt DATETIME DEFAULT CURRENT_TIMESTAMP
   )
 `);
