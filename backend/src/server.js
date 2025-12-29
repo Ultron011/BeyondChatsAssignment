@@ -3,7 +3,15 @@ import cors from 'cors';
 import db from './config/db.js';
 
 const app = express();
-app.use(cors());
+
+// Configure CORS for production
+const corsOptions = {
+  origin: process.env.FRONTEND_URL || '*',
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.get('/', (req, res) => {
@@ -81,7 +89,7 @@ app.delete('/articles/:id', (req, res) => {
   res.json({ message: 'Article deleted' });
 });
 
-const PORT = 3000;
-app.listen(PORT, () => {
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`API running on http://localhost:${PORT}`);
 });
