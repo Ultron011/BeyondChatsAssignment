@@ -60,9 +60,6 @@ const ArticleGrid = () => {
     );
   }
 
-  // Show only first 5 articles as preview cards
-  const previewArticles = articles.slice(0, 5);
-
   return (
     <div>
       <div className="mb-6">
@@ -71,7 +68,7 @@ const ArticleGrid = () => {
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {previewArticles.map((article) => (
+        {articles.map((article) => (
           <ArticleCard key={article.id} article={article} isPreview={true} />
         ))}
       </div>

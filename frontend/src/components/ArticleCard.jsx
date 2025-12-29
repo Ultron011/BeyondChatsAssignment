@@ -2,11 +2,17 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Badge } from './ui/badge';
 import { Calendar, User, Sparkles, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { cleanArticleContent } from '@/lib/textUtils';
 
 const ArticleCard = ({ article, type = 'original', isPreview = false }) => {
   const navigate = useNavigate();
   const isEnhanced = type === 'enhanced';
-  const content = isEnhanced ? article.content : article.originalContent;
+  
+  const rawContent = isEnhanced 
+    ? (article.content || '') 
+    : (article.originalContent || article.content || '');
+  
+  const content = cleanArticleContent(rawContent);
 
   const handleClick = () => {
     if (isPreview) {
@@ -46,12 +52,10 @@ const ArticleCard = ({ article, type = 'original', isPreview = false }) => {
         )}
       </CardHeader>
 
-      <CardContent className="flex-1">
+      <CardContent className="flex-1 overflow-hidden">
         {!isPreview && content && (
-          <div className="prose prose-sm max-w-none">
-            <p className="text-gray-700 whitespace-pre-line">
-              {content}
-            </p>
+          <div className="text-gray-700 whitespace-pre-wrap break-words overflow-hidden max-w-full">
+            {content}
           </div>
         )}
 

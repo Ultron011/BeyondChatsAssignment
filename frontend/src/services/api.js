@@ -31,17 +31,6 @@ export const articleService = {
       throw error;
     }
   },
-
-  // Search articles
-  searchArticles: async (query) => {
-    try {
-      const response = await api.get(`/articles/search?q=${query}`);
-      return response.data;
-    } catch (error) {
-      console.error('Error searching articles:', error);
-      throw error;
-    }
-  },
 };
 
 export default api;

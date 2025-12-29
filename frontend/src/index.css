@@ -1,5 +1,23 @@
 @import "tailwindcss";
 
+/* Hide scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Firefox */
+* {
+  scrollbar-width: none;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
 :root {
   --background: 0 0% 100%;
   --foreground: 222.2 84% 4.9%;
@@ -43,4 +61,80 @@
   --border: 217.2 32.6% 17.5%;
   --input: 217.2 32.6% 17.5%;
   --ring: 212.7 26.8% 83.9%;
+}
+
+/* Custom prose styles for markdown content */
+.prose {
+  color: #374151;
+  max-width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  overflow: hidden;
+}
+
+.prose * {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  color: #1f2937;
+  font-weight: 600;
+  margin-top: 1.5em;
+  margin-bottom: 0.75em;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.prose h1 { font-size: 1.5em; }
+.prose h2 { font-size: 1.35em; }
+.prose h3 { font-size: 1.2em; }
+.prose h4 { font-size: 1.1em; }
+
+.prose p {
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+  line-height: 1.7;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  max-width: 100%;
+}
+
+.prose ul, .prose ol {
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+  padding-left: 1.5em;
+}
+
+.prose li {
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+  word-wrap: break-word;
+}
+
+.prose strong {
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.prose em {
+  font-style: italic;
+}
+
+.prose blockquote {
+  border-left: 3px solid #d1d5db;
+  padding-left: 1em;
+  font-style: italic;
+  color: #6b7280;
+  margin: 1em 0;
+}
+
+.prose code {
+  background-color: #f3f4f6;
+  padding: 0.2em 0.4em;
+  border-radius: 0.25em;
+  font-size: 0.9em;
+  font-family: monospace;
 }
