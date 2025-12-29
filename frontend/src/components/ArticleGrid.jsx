@@ -49,17 +49,6 @@ const ArticleGrid = () => {
     );
   }
 
-  if (articles.length === 0) {
-    return (
-      <div className="text-center py-20">
-        <p className="text-gray-600 text-lg">No articles found.</p>
-        <p className="text-gray-500 text-sm mt-2">
-          Import some articles to get started!
-        </p>
-      </div>
-    );
-  }
-
   return (
     <div>
       <div className="mb-6">
